@@ -2,8 +2,8 @@
 
 #include "Game.hpp"
 
-#include "MenuState.hpp"
-#include "GameState.hpp"
+#include "LoginState.hpp"
+#include "PlayState.hpp"
 #include "PauseState.hpp"
 
 Game::Game()
@@ -20,12 +20,11 @@ Game::~Game()
 void Game::start()
 {
 	new Core();
-	if(!Core::getSingletonPtr()->initOgre("AdvancedOgreFramework", 0, 0))	return;
+	if(!Core::getSingletonPtr()->initOgre("Client", 0, 0))	return;
+
 
 	m_pAppStateManager = new GameStateManager();
-	MenuState::create(m_pAppStateManager, "MenuState");
-	GameState::create(m_pAppStateManager, "GameState");
-    PauseState::create(m_pAppStateManager, "PauseState");
+	LoginState::create(m_pAppStateManager, "LoginScreen");
 
-	m_pAppStateManager->start(m_pAppStateManager->findByName("MenuState"));
+	m_pAppStateManager->start(m_pAppStateManager->findByName("LoginScreen"));
 }

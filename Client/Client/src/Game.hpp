@@ -1,5 +1,5 @@
-#ifndef OGRE_DEMO_HPP
-#define OGRE_DEMO_HPP
+#ifndef _Game_hpp_
+#define _Game_hpp_
 
 #include "Core.hpp"
 #include "GameStateManager.hpp"

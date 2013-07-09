@@ -1,15 +1,15 @@
 
-#ifndef MENU_STATE_HPP
-#define MENU_STATE_HPP
+#ifndef _LoginState_hpp_
+#define _LoginState_hpp_
 
-#include "AppState.hpp"
+#include "GameState.hpp"
 
-class MenuState : public AppState
+class LoginState : public GameState
 {
 public:
-    MenuState();
+    LoginState();
 
-	DECLARE_APPSTATE_CLASS(MenuState)
+	DECLARE_STATE(LoginState)
 
 	void enter();
 	void createScene();
@@ -22,16 +22,11 @@ public:
 	bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 	bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 
-	void buttonHit(OgreBites::Button* button);
-
+	
 	void update(double timeSinceLastFrame);
 
 private:
 	bool                        m_bQuit;
 };
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
-
 #endif
-
-//|||||||||||||||||||||||||||||||||||||||||||||||

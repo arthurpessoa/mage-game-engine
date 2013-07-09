@@ -1,18 +1,12 @@
 #include "stdafx.h"
-//|||||||||||||||||||||||||||||||||||||||||||||||
 
 #include "GameStateManager.hpp"
-
-#include <OgreWindowEventUtilities.h>
-
-//|||||||||||||||||||||||||||||||||||||||||||||||
+#include <OGRE/OgreWindowEventUtilities.h>
 
 GameStateManager::GameStateManager()
 {
 	m_bShutdown = false;
 }
-
-//|||||||||||||||||||||||||||||||||||||||||||||||
 
 GameStateManager::~GameStateManager()
 {
@@ -32,7 +26,7 @@ GameStateManager::~GameStateManager()
 	}
 }
 
-void GameStateManager::manageAppState(Ogre::String stateName, AppState* state)
+void GameStateManager::manageState(Ogre::String stateName, GameState* state)
 {
 	try
 	{
@@ -48,9 +42,7 @@ void GameStateManager::manageAppState(Ogre::String stateName, AppState* state)
 	}
 }
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
-
-AppState* GameStateManager::findByName(Ogre::String stateName)
+GameState* GameStateManager::findByName(Ogre::String stateName)
 {
 	std::vector<state_info>::iterator itr;
 
@@ -63,11 +55,9 @@ AppState* GameStateManager::findByName(Ogre::String stateName)
 	return 0;
 }
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
-
-void GameStateManager::start(AppState* state)
+void GameStateManager::start(GameState* state)
 {
-	changeAppState(state);
+	changeState(state);
 
 	int timeSinceLastFrame = 1;
 	int startTime = 0;
@@ -88,25 +78,14 @@ void GameStateManager::start(AppState* state)
 			m_ActiveStateStack.back()->update(timeSinceLastFrame);
 
 			Core::getSingletonPtr()->updateOgre(timeSinceLastFrame);
-			Core::getSingletonPtr()->m_pRoot->renderOneFrame();
-
+			Core::getSingletonPtr()->mRoot->renderOneFrame();
 			timeSinceLastFrame = Core::getSingletonPtr()->m_pTimer->getMillisecondsCPU() - startTime;
 		}
-		else
-		{
-#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-            Sleep(1000);
-#else
-            sleep(1);
-#endif
-		}
 	}
-
-	Core::getSingletonPtr()->m_pLog->logMessage("Main loop quit");
 }
 
 
-void GameStateManager::changeAppState(AppState* state)
+void GameStateManager::changeState(GameState* state)
 {
 	if(!m_ActiveStateStack.empty())
 	{
@@ -120,7 +99,7 @@ void GameStateManager::changeAppState(AppState* state)
 }
 
 
-bool GameStateManager::pushAppState(AppState* state)
+bool GameStateManager::pushState(GameState* state)
 {
 	if(!m_ActiveStateStack.empty())
 	{
@@ -152,7 +131,7 @@ void GameStateManager::popAppState()
 		shutdown();
 }
 
-void GameStateManager::popAllAndPushAppState(AppState* state)
+void GameStateManager::popAllAndPushState(GameState* state)
 {
     while(!m_ActiveStateStack.empty())
     {
@@ -160,10 +139,10 @@ void GameStateManager::popAllAndPushAppState(AppState* state)
         m_ActiveStateStack.pop_back();
     }
 
-    pushAppState(state);
+    pushState(state);
 }
 
-void GameStateManager::pauseAppState()
+void GameStateManager::pauseState()
 {
 	if(!m_ActiveStateStack.empty())
 	{
@@ -183,10 +162,9 @@ void GameStateManager::shutdown()
 }
 
 
-void GameStateManager::init(AppState* state)
+void GameStateManager::init(GameState* state)
 {
     Core::getSingletonPtr()->m_pKeyboard->setEventCallback(state);
 	Core::getSingletonPtr()->m_pMouse->setEventCallback(state);
-    Core::getSingletonPtr()->m_pTrayMgr->setListener(state);
 	Core::getSingletonPtr()->m_pRenderWnd->resetStatistics();
 }

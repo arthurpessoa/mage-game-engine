@@ -2,14 +2,14 @@
 #ifndef PAUSE_STATE_HPP
 #define PAUSE_STATE_HPP
 
-#include "AppState.hpp"
+#include "GameState.hpp"
 
-class PauseState : public AppState
+class PauseState : public GameState
 {
 public:
     PauseState();
 
-    DECLARE_APPSTATE_CLASS(PauseState)
+    DECLARE_STATE(PauseState)
 
     void enter();
     void createScene();
@@ -22,9 +22,6 @@ public:
     bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
     bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 
-    void buttonHit(OgreBites::Button* button);
-    void yesNoDialogClosed(const Ogre::DisplayString& question, bool yesHit);
-
     void update(double timeSinceLastFrame);
 
 private:
@@ -32,8 +29,4 @@ private:
     bool                        m_bQuestionActive;
 };
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
-
 #endif
-
-//|||||||||||||||||||||||||||||||||||||||||||||||

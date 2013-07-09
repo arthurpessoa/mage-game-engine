@@ -1,5 +1,4 @@
 
-
 #ifndef _DotSceneLoader_hpp_
 #define _DotSceneLoader_hpp_
 

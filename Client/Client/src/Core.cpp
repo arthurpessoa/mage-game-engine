@@ -7,24 +7,22 @@ template<> Core* Ogre::Singleton<Core>::msSingleton = 0;
 
 Core::Core()
 {
-    m_pRoot				= 0;
+    mRoot				= 0;
     m_pRenderWnd		= 0;
-    m_pViewport			= 0;
+    mViewport			= 0;
     m_pLog				= 0;
     m_pTimer			= 0;
 
     m_pInputMgr			= 0;
     m_pKeyboard			= 0;
     m_pMouse			= 0;
-    m_pTrayMgr          = 0;
 }
 
 Core::~Core()
 {
     Core::getSingletonPtr()->m_pLog->logMessage("Shutdown OGRE...");
-    if(m_pTrayMgr)      delete m_pTrayMgr;
     if(m_pInputMgr)		OIS::InputManager::destroyInputSystem(m_pInputMgr);
-    if(m_pRoot)			delete m_pRoot;
+    if(mRoot)			delete mRoot;
 }
 
 bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::MouseListener *pMouseListener)
@@ -34,18 +32,18 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     m_pLog = Ogre::LogManager::getSingleton().createLog("GFX.log", true, true, false);
     m_pLog->setDebugOutputEnabled(true);
 
-    m_pRoot = new Ogre::Root("plugins.cfg","config.cfg");
+    mRoot = new Ogre::Root("plugins.cfg","config.cfg");
 
-    if(!m_pRoot->showConfigDialog())
+    if(!mRoot->showConfigDialog())
         return false;
-    m_pRenderWnd = m_pRoot->initialise(true, wndTitle);
+    m_pRenderWnd = mRoot->initialise(true, wndTitle);
 
-    m_pViewport = m_pRenderWnd->addViewport(0);
-    m_pViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
+    mViewport = m_pRenderWnd->addViewport(0);
+    mViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
 
-    m_pViewport->setCamera(0);
+    mViewport->setCamera(0);
 
-    m_pOverlaySystem = new Ogre::OverlaySystem();
+    mOverlaySystem = new Ogre::OverlaySystem();
 
     size_t hWnd = 0;
     OIS::ParamList paramList;
@@ -61,6 +59,10 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     else m_pKeyboard->setEventCallback(pKeyListener);
     if(pMouseListener == 0)m_pMouse->setEventCallback(this);
     else m_pMouse->setEventCallback(pMouseListener);
+
+
+
+	/*Load Resource files*/
 
     Ogre::String secName, typeName, archName;
     Ogre::ConfigFile cf;
@@ -85,7 +87,6 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     OgreBites::InputContext inputContext;
     inputContext.mMouse = m_pMouse;
     inputContext.mKeyboard = m_pKeyboard;
-    m_pTrayMgr = new OgreBites::SdkTrayManager("AOFTrayMgr", m_pRenderWnd, inputContext, 0);
 
     m_pTimer = new Ogre::Timer();
     m_pTimer->reset();
@@ -101,20 +102,6 @@ bool Core::keyPressed(const OIS::KeyEvent &keyEventRef)
     {
         m_pRenderWnd->writeContentsToTimestampedFile("AOF_Screenshot_", ".jpg");
         return true;
-    }
-
-    if(m_pKeyboard->isKeyDown(OIS::KC_O))
-    {
-        if(m_pTrayMgr->isLogoVisible())
-        {
-            m_pTrayMgr->hideFrameStats();
-            m_pTrayMgr->hideLogo();
-        }
-        else
-        {
-            m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-            m_pTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-        }
     }
 
     return true;

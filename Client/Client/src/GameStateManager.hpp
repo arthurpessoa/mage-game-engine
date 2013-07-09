@@ -1,8 +1,8 @@
 
-#ifndef APP_STATE_MANAGER_HPP
-#define APP_STATE_MANAGER_HPP
+#ifndef _GameStateManager_hpp_
+#define _GameStateManager_hpp_
 
-#include "AppState.hpp"
+#include "GameState.hpp"
 
 class GameStateManager : public AppStateListener
 {
@@ -10,30 +10,29 @@ public:
 	typedef struct
 	{
 		Ogre::String name;
-		AppState* state;
+		GameState* state;
 	} state_info;
 
 	GameStateManager();
 	~GameStateManager();
 
-	void manageAppState(Ogre::String stateName, AppState* state);
+	void manageState(Ogre::String stateName, GameState* state);
 
-	AppState* findByName(Ogre::String stateName);
+	GameState* findByName(Ogre::String stateName);
 
-	void start(AppState* state);
-	void changeAppState(AppState* state);
-	bool pushAppState(AppState* state);
+	void start(GameState* state);
+	void changeState(GameState* state);
+	bool pushState(GameState* state);
 	void popAppState();
-	void pauseAppState();
+	void pauseState();
 	void shutdown();
-    void popAllAndPushAppState(AppState* state);
+    void popAllAndPushState(GameState* state);
 
 protected:
-	void init(AppState *state);
+	void init(GameState *state);
 
-	std::vector<AppState*>		m_ActiveStateStack;
+	std::vector<GameState*>		m_ActiveStateStack;
 	std::vector<state_info>		m_States;
 	bool						m_bShutdown;
 };
-
 #endif

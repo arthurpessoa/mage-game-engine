@@ -1,5 +1,5 @@
-#ifndef OGRE_FRAMEWORK_HPP
-#define OGRE_FRAMEWORK_HPP
+#ifndef _Core_hpp_
+#define _Core_hpp_
 
 #include <OGRE/OgreCamera.h>
 #include <OGRE/OgreEntity.h>
@@ -12,7 +12,6 @@
 #include <OGRE/OgreSceneManager.h>
 #include <OGRE/OgreRenderWindow.h>
 #include <OGRE/OgreConfigFile.h>
-#include <OGRE/SdkTrays.h>
 
 #include <OIS/OISEvents.h>
 #include <OIS/OISInputManager.h>
@@ -35,9 +34,9 @@ public:
 	bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 	bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 
-	Ogre::Root*					m_pRoot;
+	Ogre::Root*					mRoot;
 	Ogre::RenderWindow*			m_pRenderWnd;
-	Ogre::Viewport*				m_pViewport;
+	Ogre::Viewport*				mViewport;
 	Ogre::Log*					m_pLog;
 	Ogre::Timer*				m_pTimer;
 
@@ -45,8 +44,7 @@ public:
 	OIS::Keyboard*				m_pKeyboard;
 	OIS::Mouse*					m_pMouse;
 
-    Ogre::OverlaySystem*        m_pOverlaySystem;
-    OgreBites::SdkTrayManager*	m_pTrayMgr;
+    Ogre::OverlaySystem*        mOverlaySystem;
 
 private:
 	Core(const Core&);
