@@ -39,7 +39,4 @@
 #include <OIS/OISKeyboard.h>
 #include <OIS/OISMouse.h>
 
-#include <Rocket/Core.h>
-#include <Rocket/Controls.h>
-
 #include <vector>
