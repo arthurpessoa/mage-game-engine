@@ -19,7 +19,7 @@ PlayState::PlayState()
 
 void PlayState::enter()
 {
-    Core::getSingletonPtr()->m_pLog->logMessage("Entering GameState...");
+    Core::getSingletonPtr()->mLog->logMessage("Entering GameState...");
 
     mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "GameSceneMgr");
     mSceneManager->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
@@ -47,14 +47,14 @@ void PlayState::enter()
 
 bool PlayState::pause()
 {
-    Core::getSingletonPtr()->m_pLog->logMessage("Pausing GameState...");
+    Core::getSingletonPtr()->mLog->logMessage("Pausing GameState...");
 
     return true;
 }
 
 void PlayState::resume()
 {
-    Core::getSingletonPtr()->m_pLog->logMessage("Resuming GameState...");
+    Core::getSingletonPtr()->mLog->logMessage("Resuming GameState...");
 
     buildGUI();
 
@@ -64,7 +64,7 @@ void PlayState::resume()
 
 void PlayState::exit()
 {
-    Core::getSingletonPtr()->m_pLog->logMessage("Leaving GameState...");
+    Core::getSingletonPtr()->mLog->logMessage("Leaving GameState...");
 
     mSceneManager->destroyCamera(mCamera);
     mSceneManager->destroyQuery(m_pRSQ);
@@ -133,8 +133,8 @@ void PlayState::onLeftPressed(const OIS::MouseEvent &evt)
         m_pCurrentEntity->getSubEntity(1)->setMaterial(m_pOgreHeadMat);
     }
 
-    Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(Core::getSingletonPtr()->m_pMouse->getMouseState().X.abs / float(evt.state.width),
-        Core::getSingletonPtr()->m_pMouse->getMouseState().Y.abs / float(evt.state.height));
+    Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(Core::getSingletonPtr()->mMouse->getMouseState().X.abs / float(evt.state.width),
+        Core::getSingletonPtr()->mMouse->getMouseState().Y.abs / float(evt.state.height));
     m_pRSQ->setRay(mouseRay);
     m_pRSQ->setSortByDistance(true);
 
@@ -145,9 +145,9 @@ void PlayState::onLeftPressed(const OIS::MouseEvent &evt)
     {
         if(itr->movable)
         {
-            Core::getSingletonPtr()->m_pLog->logMessage("MovableName: " + itr->movable->getName());
+            Core::getSingletonPtr()->mLog->logMessage("MovableName: " + itr->movable->getName());
             m_pCurrentObject = mSceneManager->getEntity(itr->movable->getName())->getParentSceneNode();
-            Core::getSingletonPtr()->m_pLog->logMessage("ObjName " + m_pCurrentObject->getName());
+            Core::getSingletonPtr()->mLog->logMessage("ObjName " + m_pCurrentObject->getName());
             m_pCurrentObject->showBoundingBox(true);
             m_pCurrentEntity = mSceneManager->getEntity(itr->movable->getName());
             m_pCurrentEntity->getSubEntity(1)->setMaterial(m_pOgreHeadMatHigh);
@@ -158,7 +158,7 @@ void PlayState::onLeftPressed(const OIS::MouseEvent &evt)
 
 void PlayState::moveCamera()
 {
-    if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_LSHIFT))
+    if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_LSHIFT))
         mCamera->moveRelative(m_TranslateVector);
     mCamera->moveRelative(m_TranslateVector / 10);
 }
@@ -168,16 +168,16 @@ void PlayState::getInput()
 {
     if(m_bSettingsMode == false)
     {
-        if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_A))
+        if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_A))
             m_TranslateVector.x = -m_MoveScale;
 
-        if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_D))
+        if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_D))
             m_TranslateVector.x = m_MoveScale;
 
-        if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_W))
+        if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_W))
             m_TranslateVector.z = -m_MoveScale;
 
-        if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_S))
+        if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_S))
             m_TranslateVector.z = m_MoveScale;
     }
 }

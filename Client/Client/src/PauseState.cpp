@@ -12,7 +12,7 @@ PauseState::PauseState()
 
 void PauseState::enter()
 {
-    Core::getSingletonPtr()->m_pLog->logMessage("Entering PauseState...");
+    Core::getSingletonPtr()->mLog->logMessage("Entering PauseState...");
 
     mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "PauseSceneMgr");
     mSceneManager->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
@@ -42,7 +42,7 @@ void PauseState::createScene()
 
 void PauseState::exit()
 {
-    Core::getSingletonPtr()->m_pLog->logMessage("Leaving PauseState...");
+    Core::getSingletonPtr()->mLog->logMessage("Leaving PauseState...");
 
     mSceneManager->destroyCamera(mCamera);
     if(mSceneManager)
@@ -53,7 +53,7 @@ void PauseState::exit()
 
 bool PauseState::keyPressed(const OIS::KeyEvent &keyEventRef)
 {
-    if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_ESCAPE) && !m_bQuestionActive)
+    if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_ESCAPE) && !m_bQuestionActive)
     {
         m_bQuit = true;
         return true;

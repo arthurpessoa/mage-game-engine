@@ -48,12 +48,6 @@
     <ClInclude Include="src\LoginState.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\RenderInterfaceOgre3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\SystemInterfaceOgre3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DotSceneLoader.cpp">

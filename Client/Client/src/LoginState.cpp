@@ -42,7 +42,7 @@ void LoginState::exit()
 
 bool LoginState::keyPressed(const OIS::KeyEvent &keyEventRef)
 {
-    if(Core::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_ESCAPE))
+    if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_ESCAPE))
     {
         m_bQuit = true;
         return true;

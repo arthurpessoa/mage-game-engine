@@ -43,6 +43,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -99,9 +100,7 @@
     <ClInclude Include="src\LoginState.hpp" />
     <ClInclude Include="src\PauseState.hpp" />
     <ClInclude Include="src\rapidxml.hpp" />
-    <ClInclude Include="src\RenderInterfaceOgre3D.h" />
     <ClInclude Include="src\stdafx.h" />
-    <ClInclude Include="src\SystemInterfaceOgre3D.h" />
     <ClInclude Include="src\targetver.h" />
   </ItemGroup>
   <ItemGroup>

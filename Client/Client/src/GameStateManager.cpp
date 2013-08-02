@@ -64,22 +64,22 @@ void GameStateManager::start(GameState* state)
 
 	while(!m_bShutdown)
 	{
-		if(Core::getSingletonPtr()->m_pRenderWnd->isClosed())m_bShutdown = true;
+		if(Core::getSingletonPtr()->mRenderWindow->isClosed())m_bShutdown = true;
 
 		Ogre::WindowEventUtilities::messagePump();
 
-		if(Core::getSingletonPtr()->m_pRenderWnd->isActive())
+		if(Core::getSingletonPtr()->mRenderWindow->isActive())
 		{
-			startTime = Core::getSingletonPtr()->m_pTimer->getMillisecondsCPU();
+			startTime = Core::getSingletonPtr()->mTimer->getMillisecondsCPU();
 
-			Core::getSingletonPtr()->m_pKeyboard->capture();
-			Core::getSingletonPtr()->m_pMouse->capture();
+			Core::getSingletonPtr()->mKeyboard->capture();
+			Core::getSingletonPtr()->mMouse->capture();
 
 			m_ActiveStateStack.back()->update(timeSinceLastFrame);
 
 			Core::getSingletonPtr()->updateOgre(timeSinceLastFrame);
 			Core::getSingletonPtr()->mRoot->renderOneFrame();
-			timeSinceLastFrame = Core::getSingletonPtr()->m_pTimer->getMillisecondsCPU() - startTime;
+			timeSinceLastFrame = Core::getSingletonPtr()->mTimer->getMillisecondsCPU() - startTime;
 		}
 	}
 }
@@ -164,7 +164,7 @@ void GameStateManager::shutdown()
 
 void GameStateManager::init(GameState* state)
 {
-    Core::getSingletonPtr()->m_pKeyboard->setEventCallback(state);
-	Core::getSingletonPtr()->m_pMouse->setEventCallback(state);
-	Core::getSingletonPtr()->m_pRenderWnd->resetStatistics();
+    Core::getSingletonPtr()->mKeyboard->setEventCallback(state);
+	Core::getSingletonPtr()->mMouse->setEventCallback(state);
+	Core::getSingletonPtr()->mRenderWindow->resetStatistics();
 }
