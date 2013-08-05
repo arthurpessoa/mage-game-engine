@@ -27,14 +27,18 @@ void LoginState::enter()
 
 void LoginState::initGUI()
 {
-	MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
-	
+	//init MyGUI OgrePlatform
+	mPlatform = new MyGUI::OgrePlatform();
 	mPlatform->initialise(Core::getSingletonPtr()->mRenderWindow, mSceneManager); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
-	
+	//Init MyGUI
 	mGUI = new MyGUI::Gui();
 	mGUI->initialise();
+	
+	//button test
 
+	MyGUI::WindowPtr window = MyGUI::Gui::getInstance().createWidget<MyGUI::Window>("WindowC", 10, 1, 390, 300, MyGUI::Align::Default, "Overlapped"); 
 	MyGUI::ButtonPtr button = mGUI->createWidget<MyGUI::Button>("Button", 10, 10, 300, 26, MyGUI::Align::Default, "Main");
+	
 	button->setCaption("exit");
 	button->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressbutton);
 

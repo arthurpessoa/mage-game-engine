@@ -27,11 +27,12 @@ public:
 
 	void update(double timeSinceLastFrame);
 
+	MyGUI::OgrePlatform*		mPlatform;
+	MyGUI::Gui*					mGUI;
 
 	void pressbutton(MyGUI::Widget* _widget);
 private:
 	bool                        mQuit;
-	MyGUI::Gui*					mGUI;
 };
 
 #endif

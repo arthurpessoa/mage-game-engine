@@ -27,24 +27,19 @@ Core::~Core()
 
 bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::MouseListener *pMouseListener)
 {
+	//init GFX
     Ogre::LogManager* logMgr = new Ogre::LogManager();
-
     mLog = Ogre::LogManager::getSingleton().createLog("GFX.log", true, true, false);
     mLog->setDebugOutputEnabled(true);
-
     mRoot = new Ogre::Root("plugins.cfg","config.cfg");
-
 	if(!mRoot->restoreConfig()){
 		if(!mRoot->showConfigDialog())
 			return false;
 	}
     mRenderWindow = mRoot->initialise(true, wndTitle);
-
     mViewport = mRenderWindow->addViewport(0);
     mViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
-
     mViewport->setCamera(0);
-
     mOverlaySystem = new Ogre::OverlaySystem();
 
     size_t hWnd = 0;
@@ -66,11 +61,10 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     if(pMouseListener == 0)mMouse->setEventCallback(this);
     else mMouse->setEventCallback(pMouseListener);
 
-	//Load Resource files
+	//init Resource files
     Ogre::String secName, typeName, archName;
     Ogre::ConfigFile cf;
     cf.load("resources.cfg");
-
     Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements())
     {
@@ -85,14 +79,21 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
         }
     }
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
+	//init Input
     OgreBites::InputContext inputContext;
     inputContext.mMouse = mMouse;
     inputContext.mKeyboard = mKeyboard;
-    mTimer = new Ogre::Timer();
+    
+	//init Timer
+	mTimer = new Ogre::Timer();
     mTimer->reset();
+
+	//init Window
     mRenderWindow->setActive(true);
+
+
     return true;
 }
 
