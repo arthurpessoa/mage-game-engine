@@ -13,7 +13,7 @@ public:
 	void start();
 
 private:
-	GameStateManager*	m_pAppStateManager;
+	GameStateManager*	mAppStateManager;
 };
 
 #endif

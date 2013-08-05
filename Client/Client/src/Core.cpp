@@ -48,14 +48,18 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     mOverlaySystem = new Ogre::OverlaySystem();
 
     size_t hWnd = 0;
-    OIS::ParamList paramList;
-    mRenderWindow->getCustomAttribute("WINDOW", &hWnd);
-    paramList.insert(OIS::ParamList::value_type("WINDOW", Ogre::StringConverter::toString(hWnd)));
-    mInputManager = OIS::InputManager::createInputSystem(paramList);
+	OIS::ParamList paramList;
+
+	//--------WIN32 parameters--------------
+	mRenderWindow->getCustomAttribute("WINDOW", &hWnd);
+	paramList.insert(OIS::ParamList::value_type("WINDOW", Ogre::StringConverter::toString(hWnd)));
+	//-------------------------------------
+
+	mInputManager = OIS::InputManager::createInputSystem(paramList);
     mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject(OIS::OISKeyboard, true));
     mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, true));
     mMouse->getMouseState().height = mRenderWindow->getHeight();
-    mMouse->getMouseState().width	 = mRenderWindow->getWidth();
+    mMouse->getMouseState().width  = mRenderWindow->getWidth();
 
     if(pKeyListener == 0)mKeyboard->setEventCallback(this);
     else mKeyboard->setEventCallback(pKeyListener);
@@ -81,19 +85,18 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
         }
     }
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
+    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
     OgreBites::InputContext inputContext;
     inputContext.mMouse = mMouse;
     inputContext.mKeyboard = mKeyboard;
-
     mTimer = new Ogre::Timer();
     mTimer->reset();
-
     mRenderWindow->setActive(true);
-
     return true;
 }
+
+
 
 bool Core::keyPressed(const OIS::KeyEvent &keyEventRef)
 {

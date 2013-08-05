@@ -55,16 +55,16 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost;$(OGRE_HOME)\Include\Rocket;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/Zm250 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\Samples\Common\include;$(OGRE_HOME)\boost;$(OGRE_HOME)\plugins\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zm300 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AddModuleNamesToAssembly>
       </AddModuleNamesToAssembly>
-      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;OgreOverlay_d.lib;OgreTerrain_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\$(Configuration);$(OGRE_HOME)\boost\lib;$(OGRE_HOME)\Rocket\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;OIS_d.lib;OgreOverlay_d.lib;OgreTerrain_d.lib;MyGUI.OgrePlatform_d.lib;MyGUIEngine_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\$(Configuration);$(OGRE_HOME)\boost\lib;$(OGRE_HOME)\plugins\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,7 +87,7 @@
       <AddModuleNamesToAssembly>
       </AddModuleNamesToAssembly>
       <AdditionalDependencies>RocketCore.lib;OgreMain.lib;OIS.lib;OgreOverlay.lib;OgreTerrain.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\$(Configuration);$(OGRE_HOME)\boost\lib;$(OGRE_HOME)\Rocket\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\$(Configuration);$(OGRE_HOME)\boost\lib;$(OGRE_HOME)\plugins\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

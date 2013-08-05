@@ -33,10 +33,12 @@
 #include <OGRE/Terrain/OgreTerrainGroup.h>
 #include <OGRE/Terrain/OgreTerrainMaterialGeneratorA.h>
 
-
 #include <OIS/OISEvents.h>
 #include <OIS/OISInputManager.h>
 #include <OIS/OISKeyboard.h>
 #include <OIS/OISMouse.h>
+
+#include "MYGUI/MyGUI.h"
+#include "MYGUI/MyGUI_OgrePlatform.h"
 
 #include <vector>

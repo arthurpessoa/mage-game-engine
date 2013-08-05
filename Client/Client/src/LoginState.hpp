@@ -4,6 +4,9 @@
 
 #include "GameState.hpp"
 
+#include "MYGUI/MyGUI.h"
+#include "MYGUI/MyGUI_OgrePlatform.h"
+
 class LoginState : public GameState
 {
 public:
@@ -12,7 +15,7 @@ public:
 	DECLARE_STATE(LoginState)
 
 	void enter();
-	void createScene();
+	void initGUI();
 	void exit();
 
 	bool keyPressed(const OIS::KeyEvent &keyEventRef);
@@ -24,8 +27,11 @@ public:
 
 	void update(double timeSinceLastFrame);
 
+
+	void pressbutton(MyGUI::Widget* _widget);
 private:
-	bool                        m_bQuit;
+	bool                        mQuit;
+	MyGUI::Gui*					mGUI;
 };
 
 #endif

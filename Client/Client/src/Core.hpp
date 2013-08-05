@@ -4,9 +4,6 @@
 #include <OGRE/OgreCamera.h>
 #include <OGRE/OgreEntity.h>
 #include <OGRE/OgreLogManager.h>
-#include <OGRE/Overlay/OgreOverlay.h>
-#include <OGRE/Overlay/OgreOverlayElement.h>
-#include <OGRE/Overlay/OgreOverlayManager.h>
 #include <OGRE/OgreRoot.h>
 #include <OGRE/OgreViewport.h>
 #include <OGRE/OgreSceneManager.h>
@@ -17,6 +14,7 @@
 #include <OIS/OISInputManager.h>
 #include <OIS/OISKeyboard.h>
 #include <OIS/OISMouse.h>
+
 
 class Core : public Ogre::Singleton<Core>, OIS::KeyListener, OIS::MouseListener
 {

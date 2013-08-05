@@ -8,12 +8,12 @@
 
 Game::Game()
 {
-	m_pAppStateManager = 0;
+	mAppStateManager = 0;
 }
 
 Game::~Game()
 {
-	delete m_pAppStateManager;
+	delete mAppStateManager;
     delete Core::getSingletonPtr();
 }
 
@@ -23,8 +23,8 @@ void Game::start()
 	if(!Core::getSingletonPtr()->initOgre("Client", 0, 0))	return;
 
 
-	m_pAppStateManager = new GameStateManager();
-	LoginState::create(m_pAppStateManager, "LoginScreen");
+	mAppStateManager = new GameStateManager();
+	LoginState::create(mAppStateManager, "LoginScreen");
 
-	m_pAppStateManager->start(m_pAppStateManager->findByName("LoginScreen"));
+	mAppStateManager->start(mAppStateManager->findByName("LoginScreen"));
 }
