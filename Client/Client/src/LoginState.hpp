@@ -30,7 +30,8 @@ public:
 	MyGUI::OgrePlatform*		mPlatform;
 	MyGUI::Gui*					mGUI;
 
-	void pressbutton(MyGUI::Widget* _widget);
+	void pressLoginButton(MyGUI::Widget* _widget);
+	void pressExitButton(MyGUI::Widget* _widget);
 private:
 	bool                        mQuit;
 };

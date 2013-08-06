@@ -4,7 +4,7 @@
 
 #include "LoginState.hpp"
 #include "PlayState.hpp"
-#include "PauseState.hpp"
+#include "CharacterSelectionState.hpp"
 
 Game::Game()
 {

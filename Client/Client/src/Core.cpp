@@ -80,7 +80,6 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     }
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
 	//init Input
     OgreBites::InputContext inputContext;
     inputContext.mMouse = mMouse;
@@ -93,10 +92,12 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 	//init Window
     mRenderWindow->setActive(true);
 
-
-    return true;
+	if(initRTSS()) return true;
+	else return false;
 }
-
+bool Core::initRTSS(){
+	return true;
+}
 
 
 bool Core::keyPressed(const OIS::KeyEvent &keyEventRef)

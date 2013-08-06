@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "LoginState.hpp"
+#include "CharacterSelectionState.hpp"
 
 using namespace Ogre;
 
@@ -30,24 +31,31 @@ void LoginState::initGUI()
 	//init MyGUI OgrePlatform
 	mPlatform = new MyGUI::OgrePlatform();
 	mPlatform->initialise(Core::getSingletonPtr()->mRenderWindow, mSceneManager); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+	
 	//Init MyGUI
 	mGUI = new MyGUI::Gui();
-	mGUI->initialise();
-	
-	//button test
+	mGUI->initialise("Core.xml");
+	MyGUI::LayoutManager::getInstance().loadLayout("loginbox.layout");
+	MyGUI::LayoutManager::getInstance().loadLayout("loginmenu.layout");
 
-	MyGUI::WindowPtr window = MyGUI::Gui::getInstance().createWidget<MyGUI::Window>("WindowC", 10, 1, 390, 300, MyGUI::Align::Default, "Overlapped"); 
-	MyGUI::ButtonPtr button = mGUI->createWidget<MyGUI::Button>("Button", 10, 10, 300, 26, MyGUI::Align::Default, "Main");
-	
-	button->setCaption("exit");
-	button->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressbutton);
+	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize()); //align loaded forms
 
-	 MyGUI::PointerManager::getInstance().setVisible(true);
+	MyGUI::ButtonPtr loginButton = mGUI->findWidget<MyGUI::Button>("loginButton"); //pointer to widget button loaded
+	MyGUI::ButtonPtr exitButton = mGUI->findWidget<MyGUI::Button>("exitButton");
 
-	
+	//event callback
+	loginButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressLoginButton);
+	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressExitButton);
 }
 
-void LoginState::pressbutton(MyGUI::Widget* _widget) 
+void LoginState::pressLoginButton(MyGUI::Widget* _widget) 
+{ 
+	//login stuff, for now i'll be only redirecting to character selection screen
+	changeAppState(new CharacterSelectionState());
+
+} 
+
+void LoginState::pressExitButton(MyGUI::Widget* _widget) 
 { 
 	mQuit = true;	
 } 
@@ -55,21 +63,13 @@ void LoginState::pressbutton(MyGUI::Widget* _widget)
 void LoginState::exit()
 {
     mSceneManager->destroyCamera(mCamera);
-    if(mSceneManager)
-        Core::getSingletonPtr()->mRoot->destroySceneManager(mSceneManager);
+    if(mSceneManager)Core::getSingletonPtr()->mRoot->destroySceneManager(mSceneManager);
 }
 
 
 bool LoginState::keyPressed(const OIS::KeyEvent &keyEventRef)
 {
-
 	MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(keyEventRef.key), keyEventRef.text);
-	if(Core::getSingletonPtr()->mKeyboard->isKeyDown(OIS::KC_ESCAPE))
-    {
-        mQuit = true;
-        return true;
-    }
-
     Core::getSingletonPtr()->keyPressed(keyEventRef);
     return true;
 }
@@ -107,7 +107,7 @@ void LoginState::update(double timeSinceLastFrame)
 {
 	
 	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
-    
+
     if(mQuit == true)
     {
         shutdown();

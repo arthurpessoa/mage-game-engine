@@ -41,8 +41,9 @@ public:
 	OIS::Keyboard*				mKeyboard;
 	OIS::Mouse*					mMouse;
     Ogre::OverlaySystem*        mOverlaySystem;
-	
+
 private:
+	bool initRTSS();
 	Core(const Core&);
 	Core& operator= (const Core&);
 };

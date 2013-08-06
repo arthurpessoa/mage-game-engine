@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout">
+    <Widget type="Window" skin="Window" position_real="0.888889 0.691358 0.100741 0.283951" align="ALIGN_RIGHT ALIGN_BOTTOM" layer="Main" name="loginmenu">
+        <Widget type="Button" skin="Button" position_real="0.0393701 0.807018 0.944882 0.140351" name="exitButton">
+            <Property key="Widget_Caption" value="Exit"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position_real="0.0393701 0.619883 0.944882 0.140351">
+            <Property key="Widget_Caption" value="Options"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position_real="0.0393701 0.432749 0.944882 0.140351">
+            <Property key="Widget_Caption" value="Website"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position_real="0.0393701 0.245614 0.944882 0.140351">
+            <Property key="Widget_Caption" value="Help"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position_real="0.0393701 0.0584795 0.944882 0.140351">
+            <Property key="Widget_Caption" value="About"/>
+        </Widget>
+    </Widget>
+</MyGUI>
