@@ -36,9 +36,11 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 		if(!mRoot->showConfigDialog())
 			return false;
 	}
+	//add renderwndw
     mRenderWindow = mRoot->initialise(true, wndTitle);
+	//set default viewport
     mViewport = mRenderWindow->addViewport(0);
-    mViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
+    mViewport->setBackgroundColour(ColourValue(0, 0, 0, 1.0f));
     mViewport->setCamera(0);
     mOverlaySystem = new Ogre::OverlaySystem();
 
@@ -80,6 +82,7 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     }
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
 	//init Input
     OgreBites::InputContext inputContext;
     inputContext.mMouse = mMouse;
@@ -92,13 +95,12 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 	//init Window
     mRenderWindow->setActive(true);
 
-	if(initRTSS()) return true;
-	else return false;
-}
-bool Core::initRTSS(){
+	//init GUI
+	//MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
+	//mPlatform->shutdown();
+
 	return true;
 }
-
 
 bool Core::keyPressed(const OIS::KeyEvent &keyEventRef)
 {

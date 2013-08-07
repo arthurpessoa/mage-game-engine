@@ -6,7 +6,6 @@ using namespace Ogre;
 CharacterSelectionState::CharacterSelectionState()
 {
     m_bQuit             = false;
-    m_bQuestionActive   = false;
     m_FrameEvent        = Ogre::FrameEvent();
 }
 
@@ -28,8 +27,36 @@ void CharacterSelectionState::enter()
 
     m_bQuit = false;
 
+	
     createScene();
+	initGUI();
 }
+
+
+
+void CharacterSelectionState::initGUI()
+{
+
+	//init MyGUI OgrePlatform
+	mPlatform = new MyGUI::OgrePlatform();
+	//mPlatform->initialise(Core::getSingletonPtr()->mRenderWindow, mSceneManager); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+
+	//Init MyGUI
+	mGUI = new MyGUI::Gui();
+	mGUI->initialise("Core.xml");
+	
+
+	MyGUI::LayoutManager::getInstance().loadLayout("characterScreen.layout");
+	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize()); //align loaded forms
+	/*
+	//create pointers to buttons widgets
+	MyGUI::ButtonPtr loginButton = mGUI->findWidget<MyGUI::Button>("startButton"); //pointer to widget button loaded
+	
+	//event buttons callback
+	loginButton->eventMouseButtonClick += MyGUI::newDelegate(this, &CharacterSelectionState::pressStartButton);
+	*/
+}
+
 
 
 void CharacterSelectionState::createScene()

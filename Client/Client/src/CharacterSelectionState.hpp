@@ -4,6 +4,9 @@
 
 #include "GameState.hpp"
 
+#include "MYGUI/MyGUI.h"
+#include "MYGUI/MyGUI_OgrePlatform.h"
+
 class CharacterSelectionState : public GameState
 {
 public:
@@ -12,7 +15,6 @@ public:
     DECLARE_STATE(CharacterSelectionState)
 
     void enter();
-    void createScene();
     void exit();
 
     bool keyPressed(const OIS::KeyEvent &keyEventRef);
@@ -26,7 +28,13 @@ public:
 
 private:
     bool                        m_bQuit;
-    bool                        m_bQuestionActive;
+
+	MyGUI::OgrePlatform*		mPlatform;
+	MyGUI::Gui*					mGUI;
+	void initGUI();
+	void createScene();
+	void pressStartButton(MyGUI::Widget* _widget);
+
 };
 
 #endif

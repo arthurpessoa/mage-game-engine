@@ -15,7 +15,6 @@ public:
 	DECLARE_STATE(LoginState)
 
 	void enter();
-	void initGUI();
 	void exit();
 
 	bool keyPressed(const OIS::KeyEvent &keyEventRef);
@@ -27,13 +26,16 @@ public:
 
 	void update(double timeSinceLastFrame);
 
+	
+
+private:
+	
 	MyGUI::OgrePlatform*		mPlatform;
 	MyGUI::Gui*					mGUI;
-
+	bool                        mQuit;
+	void initGUI();
 	void pressLoginButton(MyGUI::Widget* _widget);
 	void pressExitButton(MyGUI::Widget* _widget);
-private:
-	bool                        mQuit;
 };
 
 #endif

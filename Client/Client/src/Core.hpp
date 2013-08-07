@@ -9,6 +9,7 @@
 #include <OGRE/OgreSceneManager.h>
 #include <OGRE/OgreRenderWindow.h>
 #include <OGRE/OgreConfigFile.h>
+#include "OGRE/Overlay/OgreOverlay.h"
 
 #include <OIS/OISEvents.h>
 #include <OIS/OISInputManager.h>
@@ -39,11 +40,10 @@ public:
 	Ogre::Timer*				mTimer;
 	OIS::InputManager*			mInputManager;
 	OIS::Keyboard*				mKeyboard;
-	OIS::Mouse*					mMouse;
+	OIS::Mouse*					mMouse;;
     Ogre::OverlaySystem*        mOverlaySystem;
 
 private:
-	bool initRTSS();
 	Core(const Core&);
 	Core& operator= (const Core&);
 };
