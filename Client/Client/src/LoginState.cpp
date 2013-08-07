@@ -52,7 +52,6 @@ void LoginState::initGUI()
 void LoginState::pressLoginButton(MyGUI::Widget* _widget) 
 { 
 	//login stuff. for now, i'll be only redirecting to character selection screen
-	
 	//get the text from EditBox
 	MyGUI::EditBox *loginEditBox = mGUI->findWidget<MyGUI::EditBox>("login");
 	MyGUI::EditBox *passwordEditBox = mGUI->findWidget<MyGUI::EditBox>("password");
