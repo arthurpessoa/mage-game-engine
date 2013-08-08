@@ -16,6 +16,8 @@
 #include <OIS/OISKeyboard.h>
 #include <OIS/OISMouse.h>
 
+#include "MYGUI/MyGUI.h"
+#include "MYGUI/MyGUI_OgrePlatform.h"
 
 class Core : public Ogre::Singleton<Core>, OIS::KeyListener, OIS::MouseListener
 {
@@ -40,8 +42,10 @@ public:
 	Ogre::Timer*				mTimer;
 	OIS::InputManager*			mInputManager;
 	OIS::Keyboard*				mKeyboard;
-	OIS::Mouse*					mMouse;;
+	OIS::Mouse*					mMouse;
     Ogre::OverlaySystem*        mOverlaySystem;
+	MyGUI::OgrePlatform*		mPlatform;
+	MyGUI::Gui*					mGUI;
 
 private:
 	Core(const Core&);

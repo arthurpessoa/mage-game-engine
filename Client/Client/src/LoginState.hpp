@@ -29,9 +29,6 @@ public:
 	
 
 private:
-	
-	MyGUI::OgrePlatform*		mPlatform;
-	MyGUI::Gui*					mGUI;
 	bool                        mQuit;
 	void initGUI();
 	void pressLoginButton(MyGUI::Widget* _widget);

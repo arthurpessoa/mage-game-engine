@@ -12,15 +12,30 @@ Core::Core()
     mViewport			= 0;
     mLog				= 0;
     mTimer				= 0;
-
     mInputManager		= 0;
     mKeyboard			= 0;
     mMouse				= 0;
+	mPlatform			= 0;
+	mGUI				= 0;
 }
 
 Core::~Core()
 {
     Core::getSingletonPtr()->mLog->logMessage("Shutdown OGRE...");
+
+	/*
+	if(mPlatform){
+		mPlatform->shutdown();
+		delete mPlatform;
+		mPlatform = 0;
+	}
+	if(mGUI){
+		mGUI->shutdown();
+		delete mGUI;
+		mGUI = 0;
+	}
+	*/
+
     if(mInputManager)		OIS::InputManager::destroyInputSystem(mInputManager);
     if(mRoot)			delete mRoot;
 }
@@ -94,11 +109,6 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 
 	//init Window
     mRenderWindow->setActive(true);
-
-	//init GUI
-	//MyGUI::OgrePlatform* mPlatform = new MyGUI::OgrePlatform();
-	//mPlatform->shutdown();
-
 	return true;
 }
 
@@ -109,27 +119,31 @@ bool Core::keyPressed(const OIS::KeyEvent &keyEventRef)
         mRenderWindow->writeContentsToTimestampedFile("AOF_Screenshot_", ".jpg");
         return true;
     }
-
+	MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(keyEventRef.key), keyEventRef.text);
     return true;
 }
 
 bool Core::keyReleased(const OIS::KeyEvent &keyEventRef)
 {
+	MyGUI::InputManager::getInstance().injectKeyRelease(MyGUI::KeyCode::Enum(keyEventRef.key));
     return true;
 }
 
 bool Core::mouseMoved(const OIS::MouseEvent &evt)
 {
+	MyGUI::InputManager::getInstance().injectMouseMove(evt.state.X.abs, evt.state.Y.abs, evt.state.Z.abs);
     return true;
 }
 
 bool Core::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 {
+	MyGUI::InputManager::getInstance().injectMousePress(evt.state.X.abs, evt.state.Y.abs, MyGUI::MouseButton::Enum(id));
     return true;
 }
 
 bool Core::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 {
+	MyGUI::InputManager::getInstance().injectMouseRelease(evt.state.X.abs, evt.state.Y.abs, MyGUI::MouseButton::Enum(id));
     return true;
 }
 

@@ -5,8 +5,6 @@
 #include "LoginState.hpp"
 #include "PlayState.hpp"
 #include "CharacterSelectionState.hpp"
-#include "MYGUI/MyGUI.h"
-#include "MYGUI/MyGUI_OgrePlatform.h"
 
 Game::Game()
 {
@@ -26,7 +24,7 @@ void Game::start()
 	if(!Core::getSingletonPtr()->initOgre("Client", 0, 0))	return;
 
 	mAppStateManager = new GameStateManager();
-	LoginState::create(mAppStateManager, "LoginScreen");
 
+	LoginState::create(mAppStateManager, "LoginScreen");
 	mAppStateManager->start(mAppStateManager->findByName("LoginScreen"));
 }
