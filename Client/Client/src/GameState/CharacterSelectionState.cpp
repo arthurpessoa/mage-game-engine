@@ -1,7 +1,16 @@
+//   ___      ___       __       _______    _______  
+//  |"  \    /"  |     /""\     /" _   "|  /"     "| 
+//   \   \  //   |    /    \   (: ( \___) (: ______) 
+//   /\\  \/.    |   /' /\  \   \/ \       \/    |   
+//  |: \.        |  //  __'  \  //  \ ___  // ___)_  
+//  |.  \    /:  | /   /  \\  \(:   _(  _|(:      "| 
+//  |___|\__/|___|(___/    \___)\_______)  \_______) 
+//
+//	CharacterSelectionState.cpp
+//
+
 #include "stdafx.h"
 #include "CharacterSelectionState.hpp"
-#include "PlayState.hpp"
-#include "LoginState.hpp"
 
 using namespace Ogre;
 
@@ -79,7 +88,6 @@ bool CharacterSelectionState::mouseMoved(const OIS::MouseEvent &evt)
 	Core::getSingletonPtr()->mouseMoved(evt);
 	return true;
 }
-
 
 bool CharacterSelectionState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 {

@@ -1,3 +1,14 @@
+//   ___      ___       __       _______    _______  
+//  |"  \    /"  |     /""\     /" _   "|  /"     "| 
+//   \   \  //   |    /    \   (: ( \___) (: ______) 
+//   /\\  \/.    |   /' /\  \   \/ \       \/    |   
+//  |: \.        |  //  __'  \  //  \ ___  // ___)_  
+//  |.  \    /:  | /   /  \\  \(:   _(  _|(:      "| 
+//  |___|\__/|___|(___/    \___)\_______)  \_______) 
+//
+//	PlayState.cpp
+//
+
 #include "stdafx.h"
 #include "PlayState.hpp"
 
@@ -71,14 +82,12 @@ bool PlayState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 	return true;
 }
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
 
 bool PlayState::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
 {
 	return true;
 }
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
 
 void PlayState::update(double timeSinceLastFrame)
 {

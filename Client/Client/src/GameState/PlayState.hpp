@@ -34,6 +34,5 @@ private:
 	void initGUI();
 	void createScene();
 	void pressStartButton(MyGUI::Widget* _widget);
-
 };
 #endif

@@ -2,13 +2,13 @@
 #define _Game_hpp_
 
 #include "Core.hpp"
-#include "GameStateManager.hpp"
+#include "GameState\GameStateManager.hpp"
 
-class Game
+class Client
 {
 public:
-	Game();
-	~Game();
+	Client();
+	~Client();
 
 	void start();
 

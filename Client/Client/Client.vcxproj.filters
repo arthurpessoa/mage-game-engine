@@ -13,14 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\GameState">
+      <UniqueIdentifier>{905efb66-c496-4acb-a761-f932860f905b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameState">
+      <UniqueIdentifier>{e118cc82-a47f-4b90-8e84-2a1147615730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{2e4a40e7-de0d-4fa1-9b15-952f69af959f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{cdd31eb5-c9d9-43a7-acba-eb14277071db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\DotSceneLoader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\rapidxml.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -30,51 +36,66 @@
     <ClInclude Include="src\Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game.hpp">
+    <ClInclude Include="src\Player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameStateManager.hpp">
+    <ClInclude Include="src\Character.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\PlayState.hpp">
+    <ClInclude Include="src\GameObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GameState.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\CharacterSelectionState.hpp">
+      <Filter>Header Files\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="src\LoginState.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\GameState\GameState.hpp">
+      <Filter>Header Files\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="src\CharacterSelectionState.hpp">
+    <ClInclude Include="src\GameState\LoginState.hpp">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState\PlayState.hpp">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameState\GameStateManager.hpp">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Util\DotSceneLoader.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Util\rapidxml.hpp">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Client.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\DotSceneLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game.cpp">
+    <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameStateManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameState\CharacterSelectionState.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="src\PlayState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameState\LoginState.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="src\LoginState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\GameState\PlayState.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="src\CharacterSelectionState.cpp">
+    <ClCompile Include="src\GameState\GameStateManager.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Util\DotSceneLoader.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
