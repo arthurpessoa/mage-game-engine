@@ -11,7 +11,7 @@
 #include "stdafx.h"
 #include "Client.hpp"
 #include "GameState\LoginState.hpp"
-#include "GameState\PlayState.hpp"
+#include "GameState\GameplayState.hpp"
 #include "GameState\CharacterSelectionState.hpp"
 
 Client::Client()
@@ -36,7 +36,7 @@ void Client::start()
 	//create the game States
 	LoginState::create(mAppStateManager, "LoginState");
 	CharacterSelectionState::create(mAppStateManager, "CharacterSelectionState");
-	PlayState::create(mAppStateManager,"PlayState");
+	GameplayState::create(mAppStateManager,"PlayState");
 
 	//go to first state, LoginScreen
 	mAppStateManager->start(mAppStateManager->findByName("LoginState"));

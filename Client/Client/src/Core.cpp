@@ -65,7 +65,7 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     mRenderWindow = mRoot->initialise(true, wndTitle);
 	//set default viewport
     mViewport = mRenderWindow->addViewport(0);
-    mViewport->setBackgroundColour(ColourValue(0, 0, 0, 1.0f));
+    mViewport->setBackgroundColour(ColourValue(0.5f, 0.5f, 0.5f, 1.0f));
     mViewport->setCamera(0);
     mOverlaySystem = new Ogre::OverlaySystem();
 

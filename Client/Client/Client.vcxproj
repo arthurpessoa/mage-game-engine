@@ -93,13 +93,14 @@
   <ItemGroup>
     <ClInclude Include="src\Character.hpp" />
     <ClInclude Include="src\Core.hpp" />
+    <ClInclude Include="src\ExtendedCamera.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\Client.hpp" />
     <ClInclude Include="src\GameState\CharacterSelectionState.hpp" />
     <ClInclude Include="src\GameState\GameState.hpp" />
     <ClInclude Include="src\GameState\GameStateManager.hpp" />
     <ClInclude Include="src\GameState\LoginState.hpp" />
-    <ClInclude Include="src\GameState\PlayState.hpp" />
+    <ClInclude Include="src\GameState\GameplayState.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\targetver.h" />
@@ -109,10 +110,11 @@
   <ItemGroup>
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\Client.cpp" />
+    <ClCompile Include="src\ExtendedCamera.cpp" />
     <ClCompile Include="src\GameState\CharacterSelectionState.cpp" />
     <ClCompile Include="src\GameState\GameStateManager.cpp" />
     <ClCompile Include="src\GameState\LoginState.cpp" />
-    <ClCompile Include="src\GameState\PlayState.cpp" />
+    <ClCompile Include="src\GameState\GameplayState.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

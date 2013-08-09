@@ -3,16 +3,18 @@
 #define PLAYSTATE_HPP
 
 #include "GameState.hpp"
+#include "Player.hpp"
+#include "ExtendedCamera.hpp"
 
 #include "MYGUI/MyGUI.h"
 #include "MYGUI/MyGUI_OgrePlatform.h"
 
-class PlayState : public GameState
+class GameplayState : public GameState
 {
 public:
-	PlayState();
+	GameplayState();
 
-	DECLARE_STATE(PlayState)
+	DECLARE_STATE(GameplayState)
 
 	void enter();
 	void exit();
@@ -31,8 +33,15 @@ private:
 
 	MyGUI::OgrePlatform*		mPlatform;
 	MyGUI::Gui*					mGUI;
-	void initGUI();
+
+	Player *mPlayer;
+	ExtendedCamera *mExtendedCamera;
+	unsigned short int mCameraMode;
+
 	void createScene();
+
+	//GUI
+	void initGUI();
 	void pressStartButton(MyGUI::Widget* _widget);
 };
 #endif

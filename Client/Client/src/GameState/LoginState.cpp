@@ -23,6 +23,7 @@ LoginState::LoginState()
 void LoginState::enter()
 {
 
+	Core::getSingletonPtr()->mLog->logMessage("Entering LoginState..."); 
 	//setup sceneManager
     mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "LoginSceneManager");	
     mSceneManager->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
@@ -81,6 +82,7 @@ void LoginState::exit()
 	//free SceneManagers
     mSceneManager->destroyCamera(mCamera);
     if(mSceneManager)Core::getSingletonPtr()->mRoot->destroySceneManager(mSceneManager);
+	Core::getSingletonPtr()->mLog->logMessage("Leaving LoginState...");
 }
 
 

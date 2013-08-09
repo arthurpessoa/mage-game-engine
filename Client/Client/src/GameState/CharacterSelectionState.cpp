@@ -22,6 +22,9 @@ CharacterSelectionState::CharacterSelectionState()
 
 void CharacterSelectionState::enter()
 {
+
+	Core::getSingletonPtr()->mLog->logMessage("Entering CharacterSelectionState..."); 
+
 	//setup sceneManager
 	mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "CharacterSelectionScreeen");	
 	mSceneManager->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
@@ -61,7 +64,7 @@ void CharacterSelectionState::pressStartButton(MyGUI::Widget* _widget)
 
 void CharacterSelectionState::exit()
 {
-    Core::getSingletonPtr()->mLog->logMessage("Leaving PauseState...");
+    Core::getSingletonPtr()->mLog->logMessage("Leaving CharacterSelectionState...");
 	Core::getSingletonPtr()->mGUI->destroyAllChildWidget();
 
 	mSceneManager->destroyCamera(mCamera);
