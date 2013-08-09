@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout">
+    <Widget type="Button" skin="Button" position="552 640 160 40" align="ALIGN_HCENTER ALIGN_BOTTOM" layer="Back" name="startButton">
+        <Property key="Caption" value="Start"/>
+    </Widget>
+</MyGUI>

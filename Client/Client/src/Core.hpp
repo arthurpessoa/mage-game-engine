@@ -19,6 +19,7 @@
 #include "MYGUI/MyGUI.h"
 #include "MYGUI/MyGUI_OgrePlatform.h"
 
+
 class Core : public Ogre::Singleton<Core>, OIS::KeyListener, OIS::MouseListener
 {
 public:

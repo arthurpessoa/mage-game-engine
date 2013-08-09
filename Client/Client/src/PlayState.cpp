@@ -6,31 +6,25 @@ using namespace Ogre;
 PlayState::PlayState()
 {
 	m_bQuit             = false;
-	m_bQuestionActive   = false;
 	m_FrameEvent        = Ogre::FrameEvent();
 }
 
 void PlayState::enter()
 {
-	Core::getSingletonPtr()->mLog->logMessage("Entering PauseState...");
+	Core::getSingletonPtr()->mLog->logMessage("Entering PlayState..."); //log
 
-	mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "PauseSceneMgr");
+	//setup sceneManager
+	mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "PlaySceneManager");
 	mSceneManager->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
-
 	mSceneManager->addRenderQueueListener(Core::getSingletonPtr()->mOverlaySystem);
-
+	//setup Camera
 	mCamera = mSceneManager->createCamera("charSelect");
 	mCamera->setPosition(Vector3(0, 25, -50));
 	mCamera->lookAt(Vector3(0, 0, 0));
 	mCamera->setNearClipDistance(1);
+	mCamera->setAspectRatio(Real(Core::getSingletonPtr()->mViewport->getActualWidth()) / Real(Core::getSingletonPtr()->mViewport->getActualHeight()));
 
-	mCamera->setAspectRatio(Real(Core::getSingletonPtr()->mViewport->getActualWidth()) /
-		Real(Core::getSingletonPtr()->mViewport->getActualHeight()));
-
-	Core::getSingletonPtr()->mViewport->setBackgroundColour(ColourValue(1,0,0,0));
 	Core::getSingletonPtr()->mViewport->setCamera(mCamera);
-
-
 	m_bQuit = false;
 
 	createScene();

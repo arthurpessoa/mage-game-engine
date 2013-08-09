@@ -25,6 +25,9 @@ void Game::start()
 
 	mAppStateManager = new GameStateManager();
 
-	LoginState::create(mAppStateManager, "LoginScreen");
-	mAppStateManager->start(mAppStateManager->findByName("LoginScreen"));
+	LoginState::create(mAppStateManager, "LoginState");
+	CharacterSelectionState::create(mAppStateManager, "CharacterSelectionState");
+	PlayState::create(mAppStateManager,"PlayState");
+
+	mAppStateManager->start(mAppStateManager->findByName("LoginState"));
 }

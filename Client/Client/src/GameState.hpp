@@ -33,19 +33,17 @@ public:
 	virtual bool pause(){return true;}
 	virtual void resume(){};
 	virtual void update(double timeSinceLastFrame) = 0;
-
 protected:
 	GameState(){};
 
-	GameState*	findByName(Ogre::String stateName){return m_pParent->findByName(stateName);}
-	void		changeAppState(GameState* state){m_pParent->changeState(state);}
-	bool		pushAppState(GameState* state){return m_pParent->pushState(state);}
-	void		popAppState(){m_pParent->popAppState();}
-	void		shutdown(){m_pParent->shutdown();}
-    void        popAllAndPushAppState(GameState* state){m_pParent->popAllAndPushState(state);}
+	GameState*	findByName(Ogre::String stateName){return mParent->findByName(stateName);}
+	void		changeAppState(GameState* state){mParent->changeState(state);}
+	bool		pushAppState(GameState* state){return mParent->pushState(state);}
+	void		popAppState(){mParent->popAppState();}
+	void		shutdown(){mParent->shutdown();}
+    void        popAllAndPushAppState(GameState* state){mParent->popAllAndPushState(state);}
 
-	AppStateListener*			m_pParent;
-
+	AppStateListener*			mParent;
 	Ogre::Camera*				mCamera;
 	Ogre::SceneManager*			mSceneManager;
     Ogre::FrameEvent            m_FrameEvent;
@@ -56,7 +54,7 @@ protected:
 static void create(AppStateListener* parent, const Ogre::String name)	\
 {																		\
 	T* myState = new T();											\
-	myState->m_pParent = parent;										\
+	myState->mParent = parent;										\
 	parent->manageState(name, myState);							\
 }
 

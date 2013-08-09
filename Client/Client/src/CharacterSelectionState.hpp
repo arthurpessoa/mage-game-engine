@@ -1,6 +1,6 @@
 
-#ifndef PAUSE_STATE_HPP
-#define PAUSE_STATE_HPP
+#ifndef CHARACTERSELECTIONSTATE_HPP
+#define CHARACTERSELECTIONSTATE_HPP
 
 #include "GameState.hpp"
 

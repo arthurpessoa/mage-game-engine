@@ -64,22 +64,29 @@ void GameStateManager::start(GameState* state)
 
 	while(!m_bShutdown)
 	{
-		if(Core::getSingletonPtr()->mRenderWindow->isClosed())m_bShutdown = true;
 
-		Ogre::WindowEventUtilities::messagePump();
+		try{
+			if(Core::getSingletonPtr()->mRenderWindow->isClosed())m_bShutdown = true;
 
-		if(Core::getSingletonPtr()->mRenderWindow->isActive())
+			Ogre::WindowEventUtilities::messagePump();
+
+			if(Core::getSingletonPtr()->mRenderWindow->isActive())
+			{
+				startTime = Core::getSingletonPtr()->mTimer->getMillisecondsCPU();
+
+				Core::getSingletonPtr()->mKeyboard->capture();
+				Core::getSingletonPtr()->mMouse->capture();
+
+				m_ActiveStateStack.back()->update(timeSinceLastFrame);
+
+				Core::getSingletonPtr()->updateOgre(timeSinceLastFrame);
+				Core::getSingletonPtr()->mRoot->renderOneFrame();
+				timeSinceLastFrame = Core::getSingletonPtr()->mTimer->getMillisecondsCPU() - startTime;
+			}		
+		}catch(std::exception& e)
 		{
-			startTime = Core::getSingletonPtr()->mTimer->getMillisecondsCPU();
-
-			Core::getSingletonPtr()->mKeyboard->capture();
-			Core::getSingletonPtr()->mMouse->capture();
-
-			m_ActiveStateStack.back()->update(timeSinceLastFrame);
-
-			Core::getSingletonPtr()->updateOgre(timeSinceLastFrame);
-			Core::getSingletonPtr()->mRoot->renderOneFrame();
-			timeSinceLastFrame = Core::getSingletonPtr()->mTimer->getMillisecondsCPU() - startTime;
+			delete state;
+			throw Ogre::Exception(Ogre::Exception::ERR_INTERNAL_ERROR, e.what(), "AppStateManager.cpp (39)");
 		}
 	}
 }

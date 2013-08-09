@@ -12,29 +12,26 @@ LoginState::LoginState()
 
 void LoginState::enter()
 {
-    mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "LoginSceneMgr");	
+
+	//setup sceneManager
+    mSceneManager = Core::getSingletonPtr()->mRoot->createSceneManager(ST_GENERIC, "LoginSceneManager");	
     mSceneManager->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
     mSceneManager->addRenderQueueListener(Core::getSingletonPtr()->mOverlaySystem);
-	
-    mCamera = mSceneManager->createCamera("MenuCam");
+	//setup camera
+    mCamera = mSceneManager->createCamera("LoginCamera");
     mCamera->setPosition(Vector3(0, 25, -50));
     mCamera->lookAt(Vector3(0, 0, 0));
     mCamera->setNearClipDistance(1);
     mCamera->setAspectRatio(Real(Core::getSingletonPtr()->mViewport->getActualWidth())/Real(Core::getSingletonPtr()->mViewport->getActualHeight()));
     Core::getSingletonPtr()->mViewport->setCamera(mCamera);
+
 	initGUI();
 }
 
 void LoginState::initGUI()
 {
 	//init MyGUI OgrePlatform
-	Core::getSingletonPtr()->mPlatform = new MyGUI::OgrePlatform();
-	Core::getSingletonPtr()->mPlatform->initialise(Core::getSingletonPtr()->mRenderWindow, mSceneManager,"GUI","GUI.txt"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
-
-	//Init MyGUI
-	Core::getSingletonPtr()->mGUI = new MyGUI::Gui();
-	Core::getSingletonPtr()->mGUI->initialise("Core.xml");
-
+	Core::getSingletonPtr()->mPlatform->getRenderManagerPtr()->setSceneManager(mSceneManager);
 	MyGUI::LayoutManager::getInstance().loadLayout("login.layout");
 	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize()); //align loaded forms
 
@@ -60,7 +57,7 @@ void LoginState::pressLoginButton(MyGUI::Widget* _widget)
 
 	String password = passwordEditBox->getCaption();
 */
-	changeAppState(new CharacterSelectionState());
+	popAllAndPushAppState(findByName("CharacterSelectionState"));
 } 
 
 void LoginState::pressExitButton(MyGUI::Widget* _widget) 

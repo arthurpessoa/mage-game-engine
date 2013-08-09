@@ -10,7 +10,7 @@ public:
 	typedef struct
 	{
 		Ogre::String name;
-		GameState* state;
+ 		GameState* state;
 	} state_info;
 
 	GameStateManager();

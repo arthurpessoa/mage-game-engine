@@ -109,6 +109,18 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 
 	//init Window
     mRenderWindow->setActive(true);
+
+
+	//init MyGUI OgrePlatform
+	Core::getSingletonPtr()->mPlatform = new MyGUI::OgrePlatform();
+	Core::getSingletonPtr()->mPlatform->initialise(Core::getSingletonPtr()->mRenderWindow, NULL,"GUI","GUI.txt"); // mWindow is Ogre::RenderWindow*, mSceneManager is Ogre::SceneManager*
+
+	//Init MyGUI
+	Core::getSingletonPtr()->mGUI = new MyGUI::Gui();
+	Core::getSingletonPtr()->mGUI->initialise("Core.xml");
+
+
+
 	return true;
 }
 
