@@ -5,11 +5,11 @@ Multiplayer Action Game Engine
 
 Required Library
 ----------------
-*Ogre3D
-Version: 1.9.0
-Mercurial checkout 16.07.2013
-Last changeset: 4891:c7e91928cb8a (Mon Jul 15 03:11:51 2013 +0000)
-
+*Ogre3D <br>
+Version: 1.9.0 <br>
+Mercurial checkout 16.07.2013 <br>
+Last changeset: 4891:c7e91928cb8a (Mon Jul 15 03:11:51 2013 +0000) <br>
+<br>
 *OIS
 Version: 1.4.0
 SVN checkout: 16.07.2013
