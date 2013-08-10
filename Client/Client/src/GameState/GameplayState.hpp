@@ -29,14 +29,15 @@ public:
 	void update(double timeSinceLastFrame);
 
 private:
-	bool                        m_bQuit;
-
+	bool                        mQuit;
+	//Gui System
 	MyGUI::OgrePlatform*		mPlatform;
 	MyGUI::Gui*					mGUI;
+	
+	//Player
+	Player *mPlayer; //Main Character
+	ExtendedCamera *mExtendedCamera; //Track Camera
 
-	Player *mPlayer;
-	ExtendedCamera *mExtendedCamera;
-	unsigned short int mCameraMode;
 
 	void createScene();
 

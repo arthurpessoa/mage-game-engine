@@ -43,17 +43,25 @@ void LoginState::initGUI()
 {
 	//init MyGUI OgrePlatform
 	Core::getSingletonPtr()->mPlatform->getRenderManagerPtr()->setSceneManager(mSceneManager);
-	MyGUI::LayoutManager::getInstance().loadLayout("login.layout");
-	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize()); //align loaded forms
+	MyGUI::LayoutManager::getInstance().loadLayout("Login.layout");
+	MyGUI::LayoutManager::getInstance().loadLayout("Options.layout");	
 
-	//create pointers to buttons widgets
-	MyGUI::ButtonPtr loginButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("loginButton"); //pointer to widget button loaded
-	MyGUI::ButtonPtr exitButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("exitButton");
+	//LoginWIndow
+	loginWindow =  Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Window>("loginWindow"); //window
+	loginButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("loginButton"); //Login button
+	loginButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressLoginButton);	//callback
 
-	//event buttons callback
-	loginButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressLoginButton);
-	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressExitButton);
+	//OptionWindow
+	optionWindow =  Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Window>("optionWindow"); //window
+	optionWindow->setVisible(false);
 
+	exitButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("exitButton"); //Exit button
+	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressExitButton); //callback
+	optionButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("optionButton");
+	optionButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressOptionsButton); //callback
+
+		//align
+	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize());
 }
 
 void LoginState::pressLoginButton(MyGUI::Widget* _widget) 
@@ -70,6 +78,11 @@ void LoginState::pressLoginButton(MyGUI::Widget* _widget)
 */
 	popAllAndPushAppState(findByName("CharacterSelectionState"));
 } 
+
+void LoginState::pressOptionsButton(MyGUI::Widget* _widget)
+{
+	optionWindow->setVisibleSmooth(true);
+}
 
 void LoginState::pressExitButton(MyGUI::Widget* _widget) 
 { 

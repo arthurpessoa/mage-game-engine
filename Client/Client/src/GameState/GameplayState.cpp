@@ -16,7 +16,7 @@ using namespace Ogre;
 
 GameplayState::GameplayState()
 {
-	m_bQuit             = false;
+	mQuit             = false;
 	mPlayer				= 0;
 	mExtendedCamera		= 0;
 	mCamera				= 0;
@@ -38,7 +38,7 @@ void GameplayState::enter()
 
 	Core::getSingletonPtr()->mViewport->setCamera(mCamera);
 
-	m_bQuit = false;
+	mQuit = false;
 
 	createScene();
 }
@@ -64,8 +64,10 @@ void GameplayState::createScene()
 
 	// Main character
 	mPlayer = new Player("Ogre 1", mSceneManager);
-	ExtendedCamera *exCamera = new ExtendedCamera ("Extended Camera", mSceneManager, mCamera);
+	mPlayer->setVisible (true);
 
+	mExtendedCamera = new ExtendedCamera ("Extended Camera", mSceneManager, mCamera);
+	mExtendedCamera->setTightness(0);
 }
 
 void GameplayState::exit()
@@ -89,7 +91,6 @@ bool GameplayState::keyPressed(const OIS::KeyEvent &keyEventRef)
 bool GameplayState::keyReleased(const OIS::KeyEvent &keyEventRef)
 {
 	Core::getSingletonPtr()->keyReleased(keyEventRef);
-
 	return true;
 }
 
@@ -116,17 +117,15 @@ void GameplayState::update(double timeSinceLastFrame)
 	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
 	
 	if (mPlayer){
-		static_cast<Player *>(mPlayer)->setVisible (true);
 		if (mExtendedCamera) {
-
-			Core::getSingletonPtr()->mLog->logMessage("WORKING----------------");
+			mPlayer->update(timeSinceLastFrame);
 			mExtendedCamera->update (timeSinceLastFrame, mPlayer->getCameraNode ()->_getDerivedPosition(),mPlayer->getSightNode ()->_getDerivedPosition());
 			mExtendedCamera->instantUpdate (mPlayer->getCameraNode ()->_getDerivedPosition(), mPlayer->getSightNode ()->_getDerivedPosition());
-			mExtendedCamera->setTightness(0.01f);
+			mExtendedCamera->setTightness(0);
 		}
 	}
 
-	if(m_bQuit == true)
+	if(mQuit == true)
 	{
 		shutdown();
 		return;

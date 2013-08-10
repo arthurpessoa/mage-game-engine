@@ -19,32 +19,35 @@
 #include "MYGUI/MyGUI.h"
 #include "MYGUI/MyGUI_OgrePlatform.h"
 
-
 class Core : public Ogre::Singleton<Core>, OIS::KeyListener, OIS::MouseListener
 {
 public:
 	Core();
 	~Core();
 
-	bool initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener = 0, OIS::MouseListener *pMouseListener = 0);
-	void updateOgre(double timeSinceLastFrame);
-
-	bool keyPressed(const OIS::KeyEvent &keyEventRef);
-	bool keyReleased(const OIS::KeyEvent &keyEventRef);
-
-	bool mouseMoved(const OIS::MouseEvent &evt);
-	bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
-	bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
-
+	//Ogre
 	Ogre::Root*					mRoot;
 	Ogre::RenderWindow*			mRenderWindow;
 	Ogre::Viewport*				mViewport;
 	Ogre::Log*					mLog;
 	Ogre::Timer*				mTimer;
+	Ogre::OverlaySystem*        mOverlaySystem;
+	bool initOgre(Ogre::String windowTitle, OIS::KeyListener *mKeyListener = 0, OIS::MouseListener *mMouseListener = 0);
+	void updateOgre(double timeSinceLastFrame);
+
+	//Input System
 	OIS::InputManager*			mInputManager;
 	OIS::Keyboard*				mKeyboard;
 	OIS::Mouse*					mMouse;
-    Ogre::OverlaySystem*        mOverlaySystem;
+	OIS::KeyCode				mKeyPressed;
+	OIS::KeyCode				mKeyBuffer;
+	bool mouseMoved(const OIS::MouseEvent &evt);
+	bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
+	bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
+	bool keyPressed(const OIS::KeyEvent &keyEventRef);
+	bool keyReleased(const OIS::KeyEvent &keyEventRef);
+
+	//GUI System
 	MyGUI::OgrePlatform*		mPlatform;
 	MyGUI::Gui*					mGUI;
 

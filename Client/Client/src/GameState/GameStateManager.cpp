@@ -97,11 +97,10 @@ void GameStateManager::start(GameState* state)
 		}catch(std::exception& e)
 		{
 			delete state;
-			throw Ogre::Exception(Ogre::Exception::ERR_INTERNAL_ERROR, e.what(), "AppStateManager.cpp (39)");
+			throw Ogre::Exception(Ogre::Exception::ERR_INTERNAL_ERROR, e.what(), "GameStateManager.cpp (39)");
 		}
 	}
 }
-
 
 void GameStateManager::changeState(GameState* state)
 {

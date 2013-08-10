@@ -43,10 +43,11 @@
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\ClientDistribution\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\ClientDistribution\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -76,7 +77,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(WORKSPACE)\include;$(WORKSPACE)\include\OGRE;$(WORKSPACE)\include\OGRE\Overlay;$(WORKSPACE)\include\OIS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WORKSPACE)\include;$(WORKSPACE)\include\OGRE;$(WORKSPACE)\include\OGRE\Overlay;$(WORKSPACE)\include\OIS;$(SolutionDir)$(ProjectName)\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zm300 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>

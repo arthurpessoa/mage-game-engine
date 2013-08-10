@@ -24,7 +24,7 @@ protected:
 	Ogre::SceneManager *mSceneMgr;
 public:
 	// Updates the character (movement...)
-	virtual void update (Ogre::Real elapsedTime, OIS::Keyboard *input) = 0;
+	virtual void update (Ogre::Real elapsedTime) = 0;
 	// The three methods below returns the two camera-related nodes, 
 	// and the current position of the character (for the 1st person camera)
 	Ogre::SceneNode *getSightNode () {

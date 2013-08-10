@@ -50,6 +50,7 @@ void CharacterSelectionState::initGUI()
 {
 	Core::getSingletonPtr()->mPlatform->getRenderManagerPtr()->setSceneManager(mSceneManager);
 	MyGUI::LayoutManager::getInstance().loadLayout("characterSelection.layout");
+
 	//buttons
 	MyGUI::ButtonPtr startButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("startButton"); //pointer to widget button loaded
 	//event buttons callback

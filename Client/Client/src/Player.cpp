@@ -25,6 +25,7 @@ Player::Player (Ogre::String name, Ogre::SceneManager *sceneMgr) {
 	// Give this character a shape :)
 	mEntity = mSceneMgr->createEntity (mName, "OgreHead.mesh");
 	mMainNode->attachObject (mEntity);
+	
 }
 
 Player::~Player () {
@@ -34,20 +35,30 @@ Player::~Player () {
 	mSceneMgr->destroySceneNode (mName);
 }
 
-void Player::update (Ogre::Real elapsedTime, OIS::Keyboard *input) {
+void Player::update (Ogre::Real elapsedTime) {
 	// Handle movement
-	if (input->isKeyDown (OIS::KC_W)) {
+	
+	
+	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_W)) {
 		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, 100 * elapsedTime));
+		Core::getSingletonPtr()->mLog->logMessage("W");
 	}
-	if (input->isKeyDown (OIS::KC_S)) {
+	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_S)) {
 		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, -50 * elapsedTime));
+		Core::getSingletonPtr()->mLog->logMessage("S");
 	}
-	if (input->isKeyDown (OIS::KC_A)) {
+	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_A)) {
 		mMainNode->yaw (Ogre::Radian (2 * elapsedTime));
+		Core::getSingletonPtr()->mLog->logMessage("A");
 	}
-	if (input->isKeyDown (OIS::KC_D)) {
+	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_D)) {
 		mMainNode->yaw (Ogre::Radian (-2 * elapsedTime));
+		Core::getSingletonPtr()->mLog->logMessage("D");
 	}
+
+
+
+
 }
 
 // Change visibility - Useful for 1st person view ;)

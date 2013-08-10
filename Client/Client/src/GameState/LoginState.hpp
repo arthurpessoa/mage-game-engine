@@ -31,8 +31,17 @@ public:
 private:
 	bool                        mQuit;
 	void initGUI();
+
+	//GUI
+	MyGUI::WindowPtr loginWindow;//loginWindow Widgets
+	MyGUI::ButtonPtr loginButton;
+	MyGUI::ButtonPtr optionButton; //optionWindow widgets
+	MyGUI::WindowPtr optionWindow;
+	MyGUI::ButtonPtr exitButton; //menuWindow Widgets
+
 	void pressLoginButton(MyGUI::Widget* _widget);
 	void pressExitButton(MyGUI::Widget* _widget);
+	void pressOptionsButton(MyGUI::Widget* _widget);
 };
 
 #endif

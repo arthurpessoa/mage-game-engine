@@ -27,12 +27,16 @@ Core::Core()
     mMouse				= 0;
 	mPlatform			= 0;
 	mGUI				= 0;
+	mKeyPressed			= OIS::KC_UNASSIGNED; //buffered key, a "hack" to support 2 keys @ same time
+	mKeyBuffer			= OIS::KC_UNASSIGNED;
 }
 
 Core::~Core()
 {
     Core::getSingletonPtr()->mLog->logMessage("Shutdown OGRE...");
 
+
+	//TODO: Check the OldButGold Segmentation Fault!
 	/*
 	if(mPlatform){
 		mPlatform->shutdown();
@@ -46,7 +50,7 @@ Core::~Core()
 	}
 	*/
 
-    if(mInputManager)		OIS::InputManager::destroyInputSystem(mInputManager);
+    if(mInputManager)	OIS::InputManager::destroyInputSystem(mInputManager);
     if(mRoot)			delete mRoot;
 }
 
@@ -72,7 +76,8 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
     size_t hWnd = 0;
 	OIS::ParamList paramList;
 
-	//--------WIN32 parameters--------------
+	//--------WIN32 parameters ?-------------
+	//TODO: see if in linux works
 	mRenderWindow->getCustomAttribute("WINDOW", &hWnd);
 	paramList.insert(OIS::ParamList::value_type("WINDOW", Ogre::StringConverter::toString(hWnd)));
 	//-------------------------------------
@@ -91,7 +96,7 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 	//init Resource files
     Ogre::String secName, typeName, archName;
     Ogre::ConfigFile cf;
-    cf.load("resources.cfg");
+    cf.load("..\\resources.cfg");
     Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
     while (seci.hasMoreElements())
     {
@@ -129,8 +134,6 @@ bool Core::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::
 	Core::getSingletonPtr()->mGUI = new MyGUI::Gui();
 	Core::getSingletonPtr()->mGUI->initialise("Core.xml");
 
-
-
 	return true;
 }
 
@@ -141,12 +144,27 @@ bool Core::keyPressed(const OIS::KeyEvent &keyEventRef)
         mRenderWindow->writeContentsToTimestampedFile("AOF_Screenshot_", ".jpg");
         return true;
     }
+
+	if(mKeyPressed!=keyEventRef.key){
+		mKeyBuffer = mKeyPressed;
+		mKeyPressed = keyEventRef.key;
+	}
+
 	MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(keyEventRef.key), keyEventRef.text);
     return true;
 }
 
 bool Core::keyReleased(const OIS::KeyEvent &keyEventRef)
 {
+	//when the key pressed is released, swap with buffer
+	if(mKeyPressed==keyEventRef.key){
+		mKeyPressed = mKeyBuffer;
+		mKeyBuffer = OIS::KC_UNASSIGNED;
+	}
+	if(mKeyBuffer == keyEventRef.key){ //if the key buffered is released, set him unassigned
+		mKeyBuffer = OIS::KC_UNASSIGNED;
+	}
+
 	MyGUI::InputManager::getInstance().injectKeyRelease(MyGUI::KeyCode::Enum(keyEventRef.key));
     return true;
 }
