@@ -68,6 +68,16 @@ void GameplayState::createScene()
 
 	mExtendedCamera = new ExtendedCamera ("Extended Camera", mSceneManager, mCamera);
 	mExtendedCamera->setTightness(0);
+
+
+	if (mPlayer)
+		static_cast<Player *>(mPlayer)->setVisible (true);
+	if (mExtendedCamera) {
+		if (mPlayer)
+			mExtendedCamera->instantUpdate (mPlayer->getCameraNode ()->_getDerivedPosition(), mPlayer->getSightNode ()->_getDerivedPosition());
+			mExtendedCamera->setTightness (0.01f);
+	}
+
 }
 
 void GameplayState::exit()
@@ -114,17 +124,15 @@ bool GameplayState::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID
 
 void GameplayState::update(double timeSinceLastFrame)
 {
-	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
-	
-	if (mPlayer){
-		if (mExtendedCamera) {
-			mPlayer->update(timeSinceLastFrame);
-			mExtendedCamera->update (timeSinceLastFrame, mPlayer->getCameraNode ()->_getDerivedPosition(),mPlayer->getSightNode ()->_getDerivedPosition());
-			mExtendedCamera->instantUpdate (mPlayer->getCameraNode ()->_getDerivedPosition(), mPlayer->getSightNode ()->_getDerivedPosition());
-			mExtendedCamera->setTightness(0);
+
+	if (mPlayer) {
+		mPlayer->update (timeSinceLastFrame);
+		if(mExtendedCamera){
+			mExtendedCamera->update(timeSinceLastFrame,mPlayer->getCameraNode ()->_getDerivedPosition(), mPlayer->getSightNode ()->_getDerivedPosition());
 		}
 	}
 
+	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
 	if(mQuit == true)
 	{
 		shutdown();

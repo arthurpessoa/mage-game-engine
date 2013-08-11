@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<MyGUI type="Layout">
-
-    <!-- loginWindow -->
-    <Widget type="Window" skin="WindowC" position="0 0 328 192" align="ALIGN_CENTER" layer="Back" name="loginWindow">
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="WindowC" position="55 20 328 192" align="Center" layer="Middle" name="loginWindow">
         <Property key="Caption" value="Login"/>
         <Widget type="Button" skin="Button" position="13 122 120 24" name="loginButton">
             <Property key="Caption" value="Enter"/>
@@ -10,30 +8,24 @@
         <Widget type="Button" skin="Button" position="189 122 120 24" name="registerButton">
             <Property key="Caption" value="Register"/>
         </Widget>
-        <Widget type="Button" skin="CheckBox" position="277 26 32 24"/>
-        <Widget type="EditBox" skin="EditBox" position="77 26 192 24" name="login"/>
-        <Widget type="EditBox" skin="EditBox" position="77 58 192 24" name="password">
+        <Widget type="EditBox" skin="EditBox" position="80 20 192 24" name="login"/>
+        <Widget type="EditBox" skin="EditBox" position="80 55 192 24" name="password">
             <Property key="Password" value="true"/>
             <Property key="PasswordChar" value="*"/>
         </Widget>
+        <Widget type="TextBox" skin="TextBox" position="5 25 70 20">
+            <Property key="Caption" value="Username"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="5 55 65 20">
+            <Property key="Caption" value="Password"/>
+        </Widget>
     </Widget>
-
-    <!-- MenuWindow -->
-    <Widget type="Window" skin="Window" position_real="0.888889 0.691358 0.100741 0.283951" align="ALIGN_RIGHT ALIGN_BOTTOM" layer="Main" name="menuWindow">
-        <Widget type="Button" skin="Button" position_real="0.0393701 0.807018 0.944882 0.140351" name="exitButton">
+    <Widget type="Window" skin="Window" position="0 0 120 100" align="Left" layer="Back" name="menuWindow">
+        <Widget type="Button" skin="Button" position="0 35 110 30" name="exitButton">
             <Property key="Caption" value="Exit"/>
         </Widget>
-        <Widget type="Button" skin="Button" position_real="0.0393701 0.619883 0.944882 0.140351" name="optionButton">
+        <Widget type="Button" skin="Button" position="0 5 110 30" name="optionButton">
             <Property key="Caption" value="Options"/>
-        </Widget>
-        <Widget type="Button" skin="Button" position_real="0.0393701 0.432749 0.944882 0.140351">
-            <Property key="Caption" value="Website"/>
-        </Widget>
-        <Widget type="Button" skin="Button" position_real="0.0393701 0.245614 0.944882 0.140351">
-            <Property key="Caption" value="Help"/>
-        </Widget>
-        <Widget type="Button" skin="Button" position_real="0.0393701 0.0584795 0.944882 0.140351">
-            <Property key="Caption" value="About"/>
         </Widget>
     </Widget>
 </MyGUI>

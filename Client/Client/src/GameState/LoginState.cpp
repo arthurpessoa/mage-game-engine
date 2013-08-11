@@ -50,17 +50,17 @@ void LoginState::initGUI()
 	loginWindow =  Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Window>("loginWindow"); //window
 	loginButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("loginButton"); //Login button
 	loginButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressLoginButton);	//callback
-
+	
 	//OptionWindow
 	optionWindow =  Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Window>("optionWindow"); //window
 	optionWindow->setVisible(false);
-
 	exitButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("exitButton"); //Exit button
 	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressExitButton); //callback
 	optionButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("optionButton");
 	optionButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressOptionsButton); //callback
 
-		//align
+
+	//align
 	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize());
 }
 

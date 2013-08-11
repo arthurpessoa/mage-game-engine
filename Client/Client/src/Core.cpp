@@ -11,7 +11,6 @@
 
 #include "stdafx.h"
 #include "Core.hpp"
-
 using namespace Ogre;
 template<> Core* Ogre::Singleton<Core>::msSingleton = 0;
 

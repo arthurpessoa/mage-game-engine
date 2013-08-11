@@ -49,7 +49,6 @@ protected:
     Ogre::FrameEvent            m_FrameEvent;
 };
 
-
 #define DECLARE_STATE(T)										\
 static void create(AppStateListener* parent, const Ogre::String name)	\
 {																		\

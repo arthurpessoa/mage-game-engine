@@ -40,25 +40,17 @@ void Player::update (Ogre::Real elapsedTime) {
 	
 	
 	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_W)) {
-		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, 100 * elapsedTime));
-		Core::getSingletonPtr()->mLog->logMessage("W");
+		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, 100 * (elapsedTime/1000)));
 	}
 	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_S)) {
-		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, -50 * elapsedTime));
-		Core::getSingletonPtr()->mLog->logMessage("S");
+		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, -50 * (elapsedTime/1000)));
 	}
 	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_A)) {
-		mMainNode->yaw (Ogre::Radian (2 * elapsedTime));
-		Core::getSingletonPtr()->mLog->logMessage("A");
+		mMainNode->yaw (Ogre::Radian (2 * (elapsedTime/1000)));
 	}
 	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_D)) {
-		mMainNode->yaw (Ogre::Radian (-2 * elapsedTime));
-		Core::getSingletonPtr()->mLog->logMessage("D");
+		mMainNode->yaw (Ogre::Radian (-2 * (elapsedTime/1000)));
 	}
-
-
-
-
 }
 
 // Change visibility - Useful for 1st person view ;)
