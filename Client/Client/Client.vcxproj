@@ -102,11 +102,14 @@
     <ClInclude Include="src\GameState\GameStateManager.hpp" />
     <ClInclude Include="src\GameState\LoginState.hpp" />
     <ClInclude Include="src\GameState\GameplayState.hpp" />
+    <ClInclude Include="src\GUIManager.hpp" />
+    <ClInclude Include="src\ControlManager.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\targetver.h" />
     <ClInclude Include="src\Util\DotSceneLoader.hpp" />
     <ClInclude Include="src\Util\rapidxml.hpp" />
+    <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core.cpp" />
@@ -122,6 +125,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Util\DotSceneLoader.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

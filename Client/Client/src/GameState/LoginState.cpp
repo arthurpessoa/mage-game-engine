@@ -50,15 +50,16 @@ void LoginState::initGUI()
 	loginWindow =  Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Window>("loginWindow"); //window
 	loginButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("loginButton"); //Login button
 	loginButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressLoginButton);	//callback
-	
+
 	//OptionWindow
 	optionWindow =  Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Window>("optionWindow"); //window
 	optionWindow->setVisible(false);
 	exitButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("exitButton"); //Exit button
 	exitButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressExitButton); //callback
+	/*
 	optionButton = Core::getSingletonPtr()->mGUI->findWidget<MyGUI::Button>("optionButton");
 	optionButton->eventMouseButtonClick += MyGUI::newDelegate(this, &LoginState::pressOptionsButton); //callback
-
+	*/
 
 	//align
 	MyGUI::LayerManager::getInstancePtr()->resizeView(MyGUI::RenderManager::getInstancePtr()->getViewSize());
@@ -99,39 +100,6 @@ void LoginState::exit()
 }
 
 
-bool LoginState::keyPressed(const OIS::KeyEvent &keyEventRef)
-{
-
-    Core::getSingletonPtr()->keyPressed(keyEventRef);
-    return true;
-}
-
-
-bool LoginState::keyReleased(const OIS::KeyEvent &keyEventRef)
-{
-    Core::getSingletonPtr()->keyReleased(keyEventRef);
-    return true;
-}
-
-bool LoginState::mouseMoved(const OIS::MouseEvent &evt)
-{
-	Core::getSingletonPtr()->mouseMoved(evt);
-    return true;
-}
-
-
-bool LoginState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
-{
-	Core::getSingletonPtr()->mousePressed(evt,id);
-    return true;
-}
-
-
-bool LoginState::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
-{
-	Core::getSingletonPtr()->mouseReleased(evt,id);
-    return true;
-}
 
 void LoginState::update(double timeSinceLastFrame)
 {

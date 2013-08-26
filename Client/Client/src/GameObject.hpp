@@ -12,6 +12,9 @@
 //	The GameObject class is used to define every object that can be 
 //	tracked and chased by a camera
 
+#ifndef _GameObject_hpp_
+#define _GameObject_hpp_
+
 #include "Core.hpp"
 
 // Generic GameObject class
@@ -24,16 +27,12 @@ protected:
 	Ogre::SceneManager *mSceneMgr;
 public:
 	// Updates the character (movement...)
+	void setVisible (bool visible);
 	virtual void update (Ogre::Real elapsedTime) = 0;
-	// The three methods below returns the two camera-related nodes, 
-	// and the current position of the character (for the 1st person camera)
-	Ogre::SceneNode *getSightNode () {
-		return mSightNode;
-	}
-	Ogre::SceneNode *getCameraNode () {
-		return mCameraNode;
-	}
-	Ogre::Vector3 getWorldPosition () {
-		return mMainNode->_getDerivedPosition ();
-	}
+
+	Ogre::SceneNode *getSightNode () {return mSightNode;}
+	Ogre::SceneNode *getCameraNode () {	return mCameraNode;	}
+	Ogre::Vector3 getWorldPosition () {	return mMainNode->_getDerivedPosition ();}
 };
+
+#endif

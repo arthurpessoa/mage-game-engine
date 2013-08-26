@@ -1,4 +1,6 @@
-#include "Core.hpp"
+#ifndef _Player_hpp_
+#define _Player_hpp_
+
 #include "Character.hpp"
 #include "GameObject.hpp"
 
@@ -7,6 +9,6 @@ public:
 	Player(Ogre::String name, Ogre::SceneManager *sceneMgr);
 	~Player();
 	void update (Ogre::Real elapsedTime);
-	// Change visibility - Useful for 1st person view ;)
-	void setVisible (bool visible);
 };
+
+#endif

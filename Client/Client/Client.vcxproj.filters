@@ -72,6 +72,15 @@
     <ClInclude Include="src\GameState\GameplayState.hpp">
       <Filter>Header Files\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="src\GUIManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ControlManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\stdafx.cpp">
@@ -103,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="src\GameState\GameplayState.cpp">
       <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

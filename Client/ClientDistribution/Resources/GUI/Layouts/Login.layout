@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowC" position="55 20 328 192" align="Center" layer="Middle" name="loginWindow">
+    <Widget type="Window" skin="WindowC" position="390 240 320 192" align="Center" layer="Middle" name="loginWindow">
         <Property key="Caption" value="Login"/>
-        <Widget type="Button" skin="Button" position="13 122 120 24" name="loginButton">
+        <Widget type="Button" skin="Button" position="10 120 120 24" name="loginButton">
             <Property key="Caption" value="Enter"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="189 122 120 24" name="registerButton">
-            <Property key="Caption" value="Register"/>
+        <Widget type="Button" skin="Button" position="180 120 120 24" name="exitButton">
+            <Property key="Caption" value="Exit"/>
         </Widget>
-        <Widget type="EditBox" skin="EditBox" position="80 20 192 24" name="login"/>
-        <Widget type="EditBox" skin="EditBox" position="80 55 192 24" name="password">
+        <Widget type="EditBox" skin="EditBox" position="95 20 200 24" name="login"/>
+        <Widget type="EditBox" skin="EditBox" position="95 55 200 24" name="password">
             <Property key="Password" value="true"/>
             <Property key="PasswordChar" value="*"/>
         </Widget>
@@ -18,14 +18,6 @@
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="5 55 65 20">
             <Property key="Caption" value="Password"/>
-        </Widget>
-    </Widget>
-    <Widget type="Window" skin="Window" position="0 0 120 100" align="Left" layer="Back" name="menuWindow">
-        <Widget type="Button" skin="Button" position="0 35 110 30" name="exitButton">
-            <Property key="Caption" value="Exit"/>
-        </Widget>
-        <Widget type="Button" skin="Button" position="0 5 110 30" name="optionButton">
-            <Property key="Caption" value="Options"/>
         </Widget>
     </Widget>
 </MyGUI>

@@ -41,6 +41,7 @@ void Player::update (Ogre::Real elapsedTime) {
 	
 	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_W)) {
 		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, 100 * (elapsedTime/1000)));
+
 	}
 	if (Core::getSingletonPtr()->mKeyPressed == (OIS::KC_S)) {
 		mMainNode->translate (mMainNode->getOrientation () * Ogre::Vector3 (0, 0, -50 * (elapsedTime/1000)));

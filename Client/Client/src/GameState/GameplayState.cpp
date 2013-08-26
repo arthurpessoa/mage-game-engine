@@ -37,12 +37,10 @@ void GameplayState::enter()
 	mCamera->setAspectRatio(Real(Core::getSingletonPtr()->mViewport->getActualWidth()) / Real(Core::getSingletonPtr()->mViewport->getActualHeight()));
 
 	Core::getSingletonPtr()->mViewport->setCamera(mCamera);
-
 	mQuit = false;
 
 	createScene();
 }
-
 
 void GameplayState::createScene()
 {
@@ -85,45 +83,13 @@ void GameplayState::exit()
 	Core::getSingletonPtr()->mLog->logMessage("Leaving GameplayState...");
 
 	mSceneManager->destroyCamera(mCamera);
-	if(mSceneManager)
-		Core::getSingletonPtr()->mRoot->destroySceneManager(mSceneManager);
+	if(mSceneManager)Core::getSingletonPtr()->mRoot->destroySceneManager(mSceneManager);
 
 }
-
-
-bool GameplayState::keyPressed(const OIS::KeyEvent &keyEventRef)
-{
-	Core::getSingletonPtr()->keyPressed(keyEventRef);
-	return true;
-}
-
-
-bool GameplayState::keyReleased(const OIS::KeyEvent &keyEventRef)
-{
-	Core::getSingletonPtr()->keyReleased(keyEventRef);
-	return true;
-}
-
-
-bool GameplayState::mouseMoved(const OIS::MouseEvent &evt)
-{
-	return true;
-}
-
-bool GameplayState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
-{
-	return true;
-}
-
-
-bool GameplayState::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
-{
-	return true;
-}
-
 
 void GameplayState::update(double timeSinceLastFrame)
 {
+	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
 
 	if (mPlayer) {
 		mPlayer->update (timeSinceLastFrame);
@@ -131,8 +97,6 @@ void GameplayState::update(double timeSinceLastFrame)
 			mExtendedCamera->update(timeSinceLastFrame,mPlayer->getCameraNode ()->_getDerivedPosition(), mPlayer->getSightNode ()->_getDerivedPosition());
 		}
 	}
-
-	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
 	if(mQuit == true)
 	{
 		shutdown();

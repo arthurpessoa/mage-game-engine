@@ -73,39 +73,6 @@ void CharacterSelectionState::exit()
 
 }
 
-
-bool CharacterSelectionState::keyPressed(const OIS::KeyEvent &keyEventRef)
-{
-
-	Core::getSingletonPtr()->keyPressed(keyEventRef);
-	return true;
-}
-
-bool CharacterSelectionState::keyReleased(const OIS::KeyEvent &keyEventRef)
-{
-	Core::getSingletonPtr()->keyReleased(keyEventRef);
-	return true;
-}
-
-bool CharacterSelectionState::mouseMoved(const OIS::MouseEvent &evt)
-{
-	Core::getSingletonPtr()->mouseMoved(evt);
-	return true;
-}
-
-bool CharacterSelectionState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
-{
-	Core::getSingletonPtr()->mousePressed(evt,id);
-	return true;
-}
-
-
-bool CharacterSelectionState::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
-{
-	Core::getSingletonPtr()->mouseReleased(evt,id);
-	return true;
-}
-
 void CharacterSelectionState::update(double timeSinceLastFrame)
 {
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;

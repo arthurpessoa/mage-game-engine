@@ -1,3 +1,17 @@
+//   ___      ___       __       _______    _______  
+//  |"  \    /"  |     /""\     /" _   "|  /"     "| 
+//   \   \  //   |    /    \   (: ( \___) (: ______) 
+//   /\\  \/.    |   /' /\  \   \/ \       \/    |   
+//  |: \.        |  //  __'  \  //  \ ___  // ___)_  
+//  |.  \    /:  | /   /  \\  \(:   _(  _|(:      "| 
+//  |___|\__/|___|(___/    \___)\_______)  \_______) 
+//
+//	Arthur Pessoa
+//
+
+#ifndef _ExtendedCamera_hpp_
+#define _ExtendedCamera_hpp_
+
 #include "Core.hpp"
 
 class ExtendedCamera {
@@ -19,3 +33,5 @@ public:
 	void instantUpdate (Ogre::Vector3 cameraPosition, Ogre::Vector3 targetPosition);
 	void update (Ogre::Real elapsedTime, Ogre::Vector3 cameraPosition, Ogre::Vector3 targetPosition);
 };
+
+#endif //_ExtendedCamera_hpp_
